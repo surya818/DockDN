@@ -33,7 +33,7 @@ namespace uitest.browser
                     
                     options.AddArgument("--no-sandbox");
                     options.AddArgument("--disable-dev-shm-using");
-                    getDriver = new ChromeDriver(options);
+                    getDriver = new ChromeDriver("/usr/bin",options);
                     break;
 
                 case "firefox":
@@ -43,7 +43,7 @@ namespace uitest.browser
                 default:
                     options.AddArgument("--no-sandbox");
                     options.AddArgument("--disable-dev-shm-using");
-                    getDriver = new ChromeDriver(options);
+                    getDriver = new ChromeDriver("/usr/bin",options);
                     break;
             }
 

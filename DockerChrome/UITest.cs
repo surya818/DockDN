@@ -12,6 +12,7 @@ namespace DockerChrome
             var driver = UiSetup.InitDriverAndOpenWebPage("chrome", "https://google.com");
             var title = driver.Title;
             Assert.IsNotNull(driver.Title);
+            Assert.IsTrue(driver.Title.Equals("Google"));
             driver.Close();
         }
     }
