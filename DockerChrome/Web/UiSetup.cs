@@ -26,10 +26,14 @@ namespace uitest.browser
 
         public static IWebDriver InitDriver(string browser)
         {
+            ChromeOptions options = new ChromeOptions();
             switch (browser)
             {
                 case "chrome":
-                    getDriver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                    
+                    options.AddArgument("--no-sandbox");
+                    options.AddArgument("--disable-dev-shm-using");
+                    getDriver = new ChromeDriver(options);
                     break;
 
                 case "firefox":
@@ -37,7 +41,9 @@ namespace uitest.browser
                     break;
 
                 default:
-                    getDriver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                    options.AddArgument("--no-sandbox");
+                    options.AddArgument("--disable-dev-shm-using");
+                    getDriver = new ChromeDriver(options);
                     break;
             }
 
@@ -54,3 +60,4 @@ namespace uitest.browser
         }
     }
 }
+
