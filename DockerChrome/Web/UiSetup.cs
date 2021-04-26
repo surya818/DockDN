@@ -33,7 +33,15 @@ namespace uitest.browser
                     
                     options.AddArgument("--no-sandbox");
                     options.AddArgument("--disable-dev-shm-using");
-                    getDriver = new ChromeDriver("/usr/bin",options);
+                    var runtime = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
+                    if (runtime.ToLower().Contains("linux"))
+                    {
+                        getDriver = new ChromeDriver("/usr/bin", options);
+                    }
+                    else
+                    {
+                        getDriver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                    }
                     break;
 
                 case "firefox":
@@ -43,7 +51,15 @@ namespace uitest.browser
                 default:
                     options.AddArgument("--no-sandbox");
                     options.AddArgument("--disable-dev-shm-using");
-                    getDriver = new ChromeDriver("/usr/bin",options);
+                    runtime = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
+                    if (runtime.ToLower().Contains("linux"))
+                    {
+                        getDriver = new ChromeDriver("/usr/bin", options);
+                    }
+                    else
+                    {
+                        getDriver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                    }
                     break;
             }
 
